@@ -21,6 +21,8 @@ import {
 import axios from "axios";
 import MapsPage from "./MapsPage";
 import Geocode from "react-geocode";
+import TimePicker from "react-times";
+import "react-times/css/material/default.css";
 
 Geocode.setApiKey("AIzaSyBcIEZn73crG94pPjGaislJtO3L6wNDfH8");
 
@@ -52,12 +54,12 @@ function ListingPage() {
   const [lat, setLat] = useState();
   const [lng, setLng] = useState();
   const [name, setName] = useState();
-  let urls = [];
+  let [urls, setUrls] = useState([]);
   const [fileUploading, setFileUploading] = useState(false);
 
   const categories = ["Eat", "Do", "See", "Shop"];
 
-  const [others, setOthers] = useState();
+  const [others, setOthers] = useState(false);
 
   async function handleDelete(element, arr) {
     console.log(element._id);
@@ -160,6 +162,28 @@ function ListingPage() {
         >
           <MDBIcon icon="trash" />
         </MDBBtn>
+        <MDBBtn
+          onClick={() => {
+            setEdit(element);
+            setCreatedBy(element.createdBy);
+            setDescription(element.description);
+            setAddress(element.address);
+            setName(element.name);
+            setCategory(element.category);
+            setUrl(element.mainImageUrl);
+            setUrls(element.otherImages);
+            setStartTime(element.startTime);
+            setEndTime(element.endTime);
+            setLat(element.latitude);
+            setLng(element.longitude);
+            setModal(true);
+          }}
+          rounded
+          size="sm"
+          color="primary"
+        >
+          <MDBIcon icon="edit" />
+        </MDBBtn>
       </td>
     </tr>
   ));
@@ -177,6 +201,28 @@ function ListingPage() {
           color="danger"
         >
           <MDBIcon icon="trash" />
+        </MDBBtn>
+        <MDBBtn
+          onClick={() => {
+            setEdit(element);
+            setCreatedBy(element.createdBy);
+            setDescription(element.description);
+            setAddress(element.address);
+            setName(element.name);
+            setCategory(element.category);
+            setUrl(element.mainImageUrl);
+            setUrls(element.otherImages);
+            setStartTime(element.startTime);
+            setEndTime(element.endTime);
+            setLat(element.latitude);
+            setLng(element.longitude);
+            setModal(true);
+          }}
+          rounded
+          size="sm"
+          color="primary"
+        >
+          <MDBIcon icon="edit" />
         </MDBBtn>
       </td>
     </tr>
@@ -196,6 +242,28 @@ function ListingPage() {
         >
           <MDBIcon icon="trash" />
         </MDBBtn>
+        <MDBBtn
+          onClick={() => {
+            setEdit(element);
+            setCreatedBy(element.createdBy);
+            setDescription(element.description);
+            setAddress(element.address);
+            setName(element.name);
+            setCategory(element.category);
+            setUrl(element.mainImageUrl);
+            setUrls(element.otherImages);
+            setStartTime(element.startTime);
+            setEndTime(element.endTime);
+            setLat(element.latitude);
+            setLng(element.longitude);
+            setModal(true);
+          }}
+          rounded
+          size="sm"
+          color="primary"
+        >
+          <MDBIcon icon="edit" />
+        </MDBBtn>
       </td>
     </tr>
   ));
@@ -213,6 +281,28 @@ function ListingPage() {
           color="danger"
         >
           <MDBIcon icon="trash" />
+        </MDBBtn>
+        <MDBBtn
+          onClick={() => {
+            setEdit(element);
+            setCreatedBy(element.createdBy);
+            setDescription(element.description);
+            setAddress(element.address);
+            setName(element.name);
+            setCategory(element.category);
+            setUrl(element.mainImageUrl);
+            setUrls(element.otherImages);
+            setStartTime(element.startTime);
+            setEndTime(element.endTime);
+            setLat(element.latitude);
+            setLng(element.longitude);
+            setModal(true);
+          }}
+          rounded
+          size="sm"
+          color="primary"
+        >
+          <MDBIcon icon="edit" />
         </MDBBtn>
       </td>
     </tr>
@@ -248,7 +338,6 @@ function ListingPage() {
                 onChange={(e) => setCreatedBy(e.target.value)}
                 value={createdBy}
               />
-
               <MDBRow>
                 <MDBCol md="8">
                   <MDBInput
@@ -270,6 +359,7 @@ function ListingPage() {
                   Select Category
                 </label>
                 <select
+                  value={category}
                   onChange={(e) => {
                     setCategory(e.target.value);
                   }}
@@ -283,7 +373,6 @@ function ListingPage() {
                   <option value="Shop">Shop</option>
                 </select>
               </div>
-
               <div className="input-group">
                 <div className="input-group-prepend">
                   <span className="input-group-text" id="inputGroupFileAddon01">
@@ -329,7 +418,6 @@ function ListingPage() {
                   </label>
                 </div>
               </div>
-
               <MDBInput
                 label="Image URL"
                 onChange={(e) => setUrl(e.target.value)}
@@ -337,9 +425,7 @@ function ListingPage() {
                 type="text"
                 value={url}
               />
-
-              <MDBRow>
-                <MDBCol md="12">
+              {/* <MDBCol md="12">
                   <MDBInput
                     label="Other Images"
                     onChange={(e) => setOthers(e.target.value)}
@@ -347,36 +433,76 @@ function ListingPage() {
                     type="text"
                     value={others}
                   />
-                </MDBCol>
+                </MDBCol> */}
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text" id="inputGroupFileAddon01">
+                    {others ? (
+                      <MDBIcon icon="spinner" spin />
+                    ) : (
+                      `${urls.length} Images added.`
+                    )}
+                  </span>
+                </div>
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    multiple={true}
+                    className="custom-file-input"
+                    onChange={async (e) => {
+                      if (e.target.files.length === 0) return;
+                      setOthers(true);
+                      console.log(e.target.files.length);
+                      const formData = new FormData();
+                      for (var x = 0; x < e.target.files.length; x++) {
+                        formData.append("file", e.target.files[x]);
+                      }
+                      const config = {
+                        headers: {
+                          "content-type": "multipart/form-data",
+                        },
+                      };
+                      const result = await axios.post(
+                        "/files/multiple",
+                        formData,
+                        config
+                      );
 
-                <MDBCol md="12">
-                  <MDBBtn
-                    className="w-100"
-                    onClick={() => {
-                      urls.push(others);
-                      console.log(urls);
-                      setOthers("");
+                      console.log(result.data);
+                      setUrls(result.data);
+                      setOthers(false);
                     }}
+                    id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                  <label
+                    className="custom-file-label"
+                    htmlFor="inputGroupFile01"
                   >
-                    Add More {urls !== undefined && urls.length}
-                  </MDBBtn>
-                </MDBCol>
-              </MDBRow>
-              <MDBInput
-                label="Start Time"
-                onChange={(e) => setStartTime(e.target.value)}
-                group
-                type="text"
-                value={startTime}
-              />
-
-              <MDBInput
-                label="End Time"
-                onChange={(e) => setEndTime(e.target.value)}
-                group
-                type="text"
-                value={endTime}
-              />
+                    Choose file(Multiple)
+                  </label>
+                </div>
+              </div>
+              <div className="form-group mt-2">
+                <label>Start Time</label>
+                <TimePicker
+                  timeMode="24"
+                  time={startTime === undefined ? "00:00" : `${startTime}`}
+                  onTimeChange={(o) => {
+                    setStartTime(`${o.hour}:${o.minute}`);
+                  }}
+                />
+              </div>
+              <div className="form-group mt-2">
+                <label>End Time</label>
+                <TimePicker
+                  timeMode="24"
+                  time={endTime === undefined ? "00:00" : `${endTime}`}
+                  onTimeChange={(o) => {
+                    setEndTime(`${o.hour}:${o.minute}`);
+                  }}
+                />
+              </div>
             </div>
           </MDBModalBody>
           <MDBModalFooter>
