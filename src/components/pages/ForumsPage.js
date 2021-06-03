@@ -76,11 +76,11 @@ const ForumsPage = () => {
     } else if (forumType === "city") {
       const result = await axios
         .post(`/city`, {
-          createdBy: createdBy,
-          description: description,
-          title: title,
+          // createdBy: createdBy,
+          // description: description,
+          // title: title,
           city: cityInput,
-          mainHeading: heading,
+          // mainHeading: heading,
           mainImageUrl: image,
         })
         .catch((e) => {
@@ -111,11 +111,11 @@ const ForumsPage = () => {
     } else if (forumType === "city") {
       const result = await axios
         .put(`/city/${edit._id}`, {
-          createdBy: createdBy,
-          description: description,
-          title: title,
+          // createdBy: createdBy,
+          // description: description,
+          // title: title,
           city: cityInput,
-          mainHeading: heading,
+          // mainHeading: heading,
           mainImageUrl: image,
         })
         .catch((e) => {
@@ -129,44 +129,42 @@ const ForumsPage = () => {
     setModal(false);
   }
 
-  const fourmsTable = forums.map((element) => (
-    <tr key={element._id}>
-      <td>{element.title}</td>
-      <td>{element.description}</td>
-      <td>{element.createdOn}</td>
-      <td>
-        <MDBBtn
-          onClick={() => handleDeleteFourms(element)}
-          rounded
-          size="sm"
-          color="danger"
-        >
-          <MDBIcon icon="trash" />
-        </MDBBtn>
-        <MDBBtn
-          onClick={() => {
-            setEdit(element);
-            setTitle(element.title);
-            setDescription(element.description);
-            setCreatedBy(element.createdBy);
-            setForumType("forum");
-            setModal(true);
-          }}
-          rounded
-          size="sm"
-          color="primary"
-        >
-          <MDBIcon icon="edit" />
-        </MDBBtn>
-      </td>
-    </tr>
-  ));
+  // const fourmsTable = forums.map((element) => (
+  //   <tr key={element._id}>
+  //     <td>{element.title}</td>
+  //     <td>{element.description}</td>
+  //     <td>{element.createdOn}</td>
+  //     <td>
+  //       <MDBBtn
+  //         onClick={() => handleDeleteFourms(element)}
+  //         rounded
+  //         size="sm"
+  //         color="danger"
+  //       >
+  //         <MDBIcon icon="trash" />
+  //       </MDBBtn>
+  //       <MDBBtn
+  //         onClick={() => {
+  //           setEdit(element);
+  //           setTitle(element.title);
+  //           setDescription(element.description);
+  //           setCreatedBy(element.createdBy);
+  //           setForumType("forum");
+  //           setModal(true);
+  //         }}
+  //         rounded
+  //         size="sm"
+  //         color="primary"
+  //       >
+  //         <MDBIcon icon="edit" />
+  //       </MDBBtn>
+  //     </td>
+  //   </tr>
+  // ));
 
   const cityTable = city.map((element) => (
     <tr key={element._id}>
-      <td>{element.title}</td>
-      <td>{element.description}</td>
-      <td>{element.createdOn}</td>
+      <td>{element.city}</td>
       <td>
         <MDBBtn
           onClick={() => handleDeleteCity(element)}
@@ -179,11 +177,11 @@ const ForumsPage = () => {
         <MDBBtn
           onClick={() => {
             setEdit(element);
-            setTitle(element.title);
-            setDescription(element.description);
-            setCreatedBy(element.createdBy);
+            // setTitle(element.title);
+            // setDescription(element.description);
+            // setCreatedBy(element.createdBy);
             setCityInput(element.city);
-            setHeading(element.mainHeading);
+            // setHeading(element.mainHeading);
             setImage(element.mainImageUrl);
             setForumType("city");
             setModal(true);
@@ -197,7 +195,6 @@ const ForumsPage = () => {
       </td>
     </tr>
   ));
-  console.log(axios.defaults.baseURL);
   return (
     <MDBRow>
       <MDBContainer>
@@ -208,7 +205,7 @@ const ForumsPage = () => {
           </MDBModalHeader>
           <MDBModalBody>
             <div className="grey-text">
-              <MDBInput
+              {/* <MDBInput
                 label="Title"
                 group
                 type="text"
@@ -228,16 +225,16 @@ const ForumsPage = () => {
                 type="text"
                 onChange={(e) => setCreatedBy(e.target.value)}
                 value={createdBy}
-              />
+              /> */}
               {forumType == "city" && (
                 <>
-                  <MDBInput
+                  {/* <MDBInput
                     label="Heading"
                     group
                     type="text"
                     onChange={(e) => setHeading(e.target.value)}
                     value={heading}
-                  />
+                  /> */}
                   <div className="form-group">
                     <label htmlFor="exampleFormControlSelect1">
                       Select City
@@ -335,7 +332,7 @@ const ForumsPage = () => {
         </MDBModal>
       </MDBContainer>
       <MDBCol md="12" middle={true}>
-        <MDBBtn
+        {/* <MDBBtn
           size="md"
           onClick={() => {
             setEdit();
@@ -347,7 +344,7 @@ const ForumsPage = () => {
           }}
         >
           <MDBIcon icon="plus" /> Add New Forum
-        </MDBBtn>
+        </MDBBtn> */}
 
         <MDBBtn
           size="md"
@@ -374,15 +371,15 @@ const ForumsPage = () => {
             <MDBTable>
               <MDBTableHead>
                 <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Created On</th>
+                  <th>City</th>
+                  {/* <th>Description</th>
+                  <th>Created On</th> */}
                   <th>Action</th>
                 </tr>
               </MDBTableHead>
               <MDBTableBody>
                 {cityTable}
-                {fourmsTable}
+                {/* {fourmsTable} */}
               </MDBTableBody>
             </MDBTable>
           </MDBCardBody>
