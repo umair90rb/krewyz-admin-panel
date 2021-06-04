@@ -27,8 +27,6 @@ const CommentPage = () => {
   const [edit, setEdit] = useState();
   const { comments, deleteElement, updateElement } = useData();
 
-  console.log(`here is the comments ${comments}`);
-
   const [text, setText] = useState();
   const [city, setCity] = useState();
   const [em, setEm] = useState();
@@ -90,8 +88,6 @@ const CommentPage = () => {
       </td>
     </tr>
   ));
-
-  console.log(`here is table ${table}`);
 
   return (
     <MDBRow>
