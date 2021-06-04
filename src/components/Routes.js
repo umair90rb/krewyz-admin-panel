@@ -10,6 +10,7 @@ import ForumsPage from "./pages/ForumsPage";
 import ListingPage from "./pages/ListingPage";
 import CityPage from "./pages/CityPage";
 import MapsPage from "./pages/MapsPage";
+import CommentPage from "./pages/CommentPage";
 
 class Routes extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class Routes extends React.Component {
         <PrivateRoute path="/listing" exact component={ListingPage} />
         <PrivateRoute path="/profile" exact component={ProfilePage} />
         <PrivateRoute path="/city" exact component={CityPage} />
-        <PrivateRoute path="/maps" exact component={MapsPage} />
+        <PrivateRoute path="/comments" exact component={CommentPage} />
         <Route path="/login" component={Login} />
         <Route path="/404" component={NotFoundPage} />
       </Switch>

@@ -17,19 +17,22 @@ export function DataProvider({ children }) {
   const [doing, setDoing] = useState([]);
   const [seeing, setSeeing] = useState([]);
   const [shopping, setShopping] = useState([]);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("/users/").then((users) => {
-      console.log(users.data);
       setUsers(users.data);
     });
     axios.get("/cities/").then((cities) => {
-      console.log(cities.data);
       setCities(cities.data);
     });
+
+    axios.get("/forumComment/").then((comments) => {
+      setComments(comments.data);
+    });
+
     axios.get("/listing/").then((lists) => {
-      console.log(lists.data);
       setListing(lists.data);
       var eat = [];
       var doing = [];
@@ -47,11 +50,9 @@ export function DataProvider({ children }) {
       setShopping(shop);
     });
     axios.get("/forums/").then((forums) => {
-      console.log(forums.data);
       setForums(forums.data);
     });
     axios.get("/city/").then((city) => {
-      console.log(city.data);
       setCity(city.data);
     });
     setLoading(false);
@@ -86,6 +87,7 @@ export function DataProvider({ children }) {
     doing,
     seeing,
     shopping,
+    comments,
     deleteElement,
     updateElement,
     addElement,
