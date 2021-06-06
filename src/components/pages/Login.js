@@ -75,7 +75,12 @@ const Login = () => {
               />
             </div>
             <div className="text-center">
-              <MDBBtn disabled={loading} type="submit" className="w-100">
+              <MDBBtn
+                disabled={loading}
+                type="submit"
+                color="warning"
+                className="w-100"
+              >
                 Login
               </MDBBtn>
             </div>

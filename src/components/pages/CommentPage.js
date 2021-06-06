@@ -40,7 +40,6 @@ const CommentPage = () => {
   }
 
   async function updateComment() {
-    console.log(edit._id);
     setLoading(true);
     const result = await axios
       .put(`/forumComment/${edit._id}`, {
@@ -81,7 +80,7 @@ const CommentPage = () => {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -130,14 +129,14 @@ const CommentPage = () => {
             </div>
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" size="sm" onClick={() => setModal(false)}>
+            <MDBBtn color="danger" size="sm" onClick={() => setModal(false)}>
               Close
             </MDBBtn>
             <MDBBtn
               onClick={edit == null ? null : () => updateComment()}
               disabled={loading}
               size="sm"
-              color="primary"
+              color="warning"
             >
               Save changes {loading && <MDBIcon icon="spinner" spin />}
             </MDBBtn>
@@ -147,7 +146,7 @@ const CommentPage = () => {
 
       <MDBCol md="12">
         <MDBCard className="mt-5">
-          <MDBView className="gradient-card-header blue darken-2">
+          <MDBView className="gradient-card-header orange darken-2">
             <h4 className="h4-responsive text-white">Comments</h4>
           </MDBView>
           <MDBCardBody>

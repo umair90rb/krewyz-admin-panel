@@ -17,6 +17,7 @@ import {
   MDBModalFooter,
   MDBInput,
   MDBContainer,
+  MDBBtnGroup,
 } from "mdbreact";
 import axios from "axios";
 import MapsPage from "./MapsPage";
@@ -56,6 +57,8 @@ function ListingPage() {
   const [name, setName] = useState();
   let [urls, setUrls] = useState([]);
   const [fileUploading, setFileUploading] = useState(false);
+  const [cat, setCat] = useState(["Eat", "Do", "See", "Shop"]);
+  const [cc, setCc] = useState(null);
 
   const categories = ["Eat", "Do", "See", "Shop"];
 
@@ -180,7 +183,7 @@ function ListingPage() {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -220,7 +223,7 @@ function ListingPage() {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -260,7 +263,7 @@ function ListingPage() {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -300,7 +303,7 @@ function ListingPage() {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -349,7 +352,11 @@ function ListingPage() {
                   />
                 </MDBCol>
                 <MDBCol>
-                  <MDBBtn size="sm" onClick={() => setMap(true)}>
+                  <MDBBtn
+                    size="sm"
+                    color="warning"
+                    onClick={() => setMap(true)}
+                  >
                     Get from Map
                   </MDBBtn>
                 </MDBCol>
@@ -506,7 +513,7 @@ function ListingPage() {
             </div>
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" size="sm" onClick={() => setModal(false)}>
+            <MDBBtn color="danger" size="sm" onClick={() => setModal(false)}>
               Close
             </MDBBtn>
             <MDBBtn
@@ -515,7 +522,7 @@ function ListingPage() {
               }
               disabled={loading}
               size="sm"
-              color="primary"
+              color="warning"
             >
               Save changes {loading && <MDBIcon icon="spinner" spin />}
             </MDBBtn>
@@ -533,7 +540,7 @@ function ListingPage() {
               onClick={() => setMap(false)}
               disabled={loading}
               size="sm"
-              color="primary"
+              color="warning"
             >
               Ok {loading && <MDBIcon icon="spinner" spin />}
             </MDBBtn>
@@ -544,6 +551,7 @@ function ListingPage() {
       <MDBCol md="12" middle={true}>
         <MDBBtn
           size="md"
+          color="warning"
           onClick={() => {
             setEdit();
             setEndTime();
@@ -562,10 +570,30 @@ function ListingPage() {
         >
           <MDBIcon icon="plus" /> Add New Listing
         </MDBBtn>
+        <MDBBtnGroup size="sm">
+          <MDBBtn
+            color={cc == null ? "warning" : "primary"}
+            onClick={() => {
+              setCc(null);
+            }}
+          >
+            All
+          </MDBBtn>
+          {cat.map((c) => (
+            <MDBBtn
+              color={c == cc ? "warning" : "primary"}
+              onClick={() => {
+                setCc(c);
+              }}
+            >
+              {c}
+            </MDBBtn>
+          ))}
+        </MDBBtnGroup>
       </MDBCol>
       <MDBCol md="12">
         <MDBCard className="mt-5">
-          <MDBView className="gradient-card-header blue darken-2">
+          <MDBView className="gradient-card-header orange darken-2">
             <h4 className="h4-responsive text-white">Listing</h4>
           </MDBView>
           <MDBCardBody>
@@ -579,10 +607,10 @@ function ListingPage() {
                 </tr>
               </MDBTableHead>
               <MDBTableBody>
-                {eatingTable}
-                {doingTable}
-                {seeingTable}
-                {shoppingTable}
+                {(cc == null || cc == "Eat") && eatingTable}
+                {(cc == null || cc == "Do") && doingTable}
+                {(cc == null || cc == "See") && seeingTable}
+                {(cc == null || cc == "Shop") && shoppingTable}
               </MDBTableBody>
             </MDBTable>
           </MDBCardBody>

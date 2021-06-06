@@ -27,7 +27,7 @@ const BreadcrumSection = () => {
           </MDBBreadcrumbItem>
         </MDBBreadcrumb>
         <MDBFormInline className="md-form m-0">
-          <MDBBtn onClick={logout} color="primary" className="my-0">
+          <MDBBtn onClick={logout} color="warning" className="my-0">
             <MDBIcon icon="sign-out-alt" /> Logout
           </MDBBtn>
         </MDBFormInline>

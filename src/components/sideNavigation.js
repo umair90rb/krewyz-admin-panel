@@ -1,6 +1,12 @@
 import React from "react";
 import logo from "../assets/mdb-react.png";
-import { MDBListGroup, MDBListGroupItem, MDBIcon, MDBBtn } from "mdbreact";
+import {
+  MDBListGroup,
+  MDBListGroupItem,
+  MDBIcon,
+  MDBBtn,
+  MDBLink,
+} from "mdbreact";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "./../context/AuthContext";
 
@@ -9,9 +15,14 @@ const TopNavigation = () => {
   if (currentUser == null) return <div></div>;
   return (
     <div className="sidebar-fixed position-fixed">
-      <a href="#!" className="logo-wrapper waves-effect">
-        <img alt="MDB React Logo" className="img-fluid" src={logo} />
-      </a>
+      <div className=" d-flex justify-content-center mt-5 mb-5">
+        <a href="#!" className="logo-wrapper waves-effect">
+          <h1 className="text-warning" style={{ fontFamily: "Linah" }}>
+            Krewz
+          </h1>
+          {/* <img alt="MDB React Logo" className="img-fluid" src={logo} /> */}
+        </a>
+      </div>
 
       <MDBListGroup className="list-group-flush">
         <NavLink exact={true} to="/" activeClassName="activeClass">
@@ -27,6 +38,7 @@ const TopNavigation = () => {
             Users
           </MDBListGroupItem>
         </NavLink>
+
         <NavLink to="/forums" activeClassName="activeClass">
           <MDBListGroupItem>
             <MDBIcon icon="table" className="mr-3" />
@@ -50,7 +62,7 @@ const TopNavigation = () => {
         <NavLink to="/comments" activeClassName="activeClass">
           <MDBListGroupItem>
             <MDBIcon icon="comments" className="mr-3" />
-            Comments
+            Forum Comments
           </MDBListGroupItem>
         </NavLink>
 

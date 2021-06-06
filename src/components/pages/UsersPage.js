@@ -99,6 +99,7 @@ const UsersPage = () => {
       <td>{user.email}</td>
       <td>{user.firstName}</td>
       <td>{user.lastName}</td>
+      <td>{user.airlineName}</td>
       <td>
         <MDBBtn
           onClick={() => handleDelete(user)}
@@ -120,7 +121,7 @@ const UsersPage = () => {
           }}
           rounded
           size="sm"
-          color="primary"
+          color="warning"
         >
           <MDBIcon icon="edit" />
         </MDBBtn>
@@ -246,14 +247,14 @@ const UsersPage = () => {
             </div>
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" size="sm" onClick={() => setModal(false)}>
+            <MDBBtn color="danger" size="sm" onClick={() => setModal(false)}>
               Close
             </MDBBtn>
             <MDBBtn
               onClick={edit == null ? () => addUser() : () => updateUser()}
               disabled={loading}
               size="sm"
-              color="primary"
+              color="warning"
             >
               Save changes {loading && <MDBIcon icon="spinner" spin />}
             </MDBBtn>
@@ -263,6 +264,7 @@ const UsersPage = () => {
       <MDBCol md="12" middle={true}>
         <MDBBtn
           size="md"
+          color="warning"
           onClick={() => {
             setEdit();
             setFirst();
@@ -278,7 +280,7 @@ const UsersPage = () => {
       </MDBCol>
       <MDBCol md="12">
         <MDBCard className="mt-5">
-          <MDBView className="gradient-card-header blue darken-2">
+          <MDBView className="gradient-card-header orange darken-2">
             <h4 className="h4-responsive text-white">USERS</h4>
           </MDBView>
           <MDBCardBody>
@@ -288,6 +290,7 @@ const UsersPage = () => {
                   <th>Email</th>
                   <th>First</th>
                   <th>Last</th>
+                  <th>Airline</th>
                   <th>Action</th>
                 </tr>
               </MDBTableHead>

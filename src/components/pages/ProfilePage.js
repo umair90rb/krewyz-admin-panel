@@ -49,7 +49,7 @@ const ProfilePage = () => {
                   size="md"
                   disabled={loading}
                   outline
-                  color="primary"
+                  color="warning"
                   onClick={handleReset}
                 >
                   Update Password {loading && <MDBIcon icon="spinner" spin />}

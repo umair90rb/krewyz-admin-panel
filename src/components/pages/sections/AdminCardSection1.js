@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
   MDBCard,
   MDBCardBody,
@@ -24,57 +25,63 @@ const AdminCardSection1 = () => {
     <>
       <MDBRow className="mb-4">
         <MDBCol xl="4" md="6" className="mb-r">
-          <MDBCard className="cascading-admin-card">
-            <div className="admin-up">
-              <MDBIcon icon="users" className="primary-color" />
-              <div className="data">
-                <p>Users</p>
-                <h4>
-                  <strong>{users.length}</strong>
-                </h4>
+          <NavLink to="/users">
+            <MDBCard className="cascading-admin-card">
+              <div className="admin-up">
+                <MDBIcon icon="users" className="primary-color" />
+                <div className="data">
+                  <p>Users</p>
+                  <h4>
+                    <strong>{users.length}</strong>
+                  </h4>
+                </div>
               </div>
-            </div>
-            <MDBCardBody>
-              <MDBCardText>No of total Users</MDBCardText>
-            </MDBCardBody>
-          </MDBCard>
+              <MDBCardBody>
+                <MDBCardText>No of total Users</MDBCardText>
+              </MDBCardBody>
+            </MDBCard>
+          </NavLink>
         </MDBCol>
         <MDBCol xl="4" md="6" className="mb-r">
-          <MDBCard className="cascading-admin-card">
-            <div className="admin-up">
-              <MDBIcon icon="clipboard-list" className="warning-color" />
-              <div className="data">
-                <p>Forums</p>
-                <h4>
-                  <strong>{forums.length + city.length}</strong>
-                </h4>
+          <NavLink to="/forums">
+            <MDBCard className="cascading-admin-card">
+              <div className="admin-up">
+                <MDBIcon icon="clipboard-list" className="warning-color" />
+                <div className="data">
+                  <p>Forums</p>
+                  <h4>
+                    <strong>{forums.length + city.length}</strong>
+                  </h4>
+                </div>
               </div>
-            </div>
-            <MDBCardBody>
-              <MDBCardText>No of total Forums</MDBCardText>
-            </MDBCardBody>
-          </MDBCard>
+              <MDBCardBody>
+                <MDBCardText>No of total Forums</MDBCardText>
+              </MDBCardBody>
+            </MDBCard>
+          </NavLink>
         </MDBCol>
         <MDBCol xl="4" md="6" className="mb-r">
-          <MDBCard className="cascading-admin-card">
-            <div className="admin-up">
-              <MDBIcon icon="list-ol" className="light-blue lighten-1" />
-              <div className="data">
-                <p>Listing</p>
-                <h4>
-                  <strong>
-                    {eating.length +
-                      doing.length +
-                      seeing.length +
-                      shopping.length}
-                  </strong>
-                </h4>
+          <NavLink to="/listing">
+            <MDBCard className="cascading-admin-card">
+              <div className="admin-up">
+                <MDBIcon icon="list-ol" className="light-blue lighten-1" />
+                <div className="data">
+                  <p>Listing</p>
+                  <h4>
+                    <strong>
+                      {eating.length +
+                        doing.length +
+                        seeing.length +
+                        shopping.length}
+                    </strong>
+                  </h4>
+                </div>
               </div>
-            </div>
-            <MDBCardBody>
-              <MDBCardText>No of total Listings</MDBCardText>
-            </MDBCardBody>
-          </MDBCard>
+              <MDBCardBody>
+                <MDBCardText>No of total Listings</MDBCardText>
+              </MDBCardBody>
+            </MDBCard>
+          </NavLink>
         </MDBCol>
       </MDBRow>
       <MDBRow className="mt-5 mb-4">
